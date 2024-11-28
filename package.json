@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "cypress": "^13.16.0"
+  },
+  "scripts": {
+    "abi-open": "cypress open"
   }
 }
