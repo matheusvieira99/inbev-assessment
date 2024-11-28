@@ -21,6 +21,10 @@ class LoginPage {
         return cy.get('input[data-testid="cadastrar"]');
     }
 
+    getAlert() {
+        return cy.get('div[class="alert alert-secondary alert-dismissible"]');
+    }
+
     // Actions
     enterEmail(email) {
         this.getEmailField().type(email);
@@ -39,6 +43,10 @@ class LoginPage {
         this.enterPswd(pass);
         this.clickLogin();
       }
+
+    checkAlertText(text) {
+        this.getAlert().contains(text);
+    }
 }
 
 export default LoginPage;
