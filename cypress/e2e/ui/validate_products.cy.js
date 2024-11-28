@@ -26,8 +26,7 @@ describe('Test suite to validate products', () => {
 
     it('should not login admin account with invalid credentials', () => {
         LoginPageObj.login(data.invalidEmail, data.validPass);
-        // verifying navigation
-        cy.url().should('not.include', 'admin/home');
+        cy.url().should('not.include', 'admin/home'); // verifying navigation
         LoginPageObj.checkAlertText('Email e/ou senha inválidos');
     });
   })

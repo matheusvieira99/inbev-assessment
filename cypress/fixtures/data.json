@@ -1,5 +1,5 @@
 {
   "validEmail": "teste@qa.com",
-  "validPass": 123456,
+  "validPass": "123456",
   "invalidEmail": "dsdsdsf@dsdsdsds.you.com"
 }
