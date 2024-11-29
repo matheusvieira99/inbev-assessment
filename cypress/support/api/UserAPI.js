@@ -9,10 +9,10 @@ class UserAPI {
           method: 'POST',
           url: `${this.apiHost}/usuarios`,
           body: {
-            name,
-            email,
-            password,
-            admin
+            "nome": name,
+            "email": email,
+            "password": password,
+            "administrador": admin
           },
         });
       }

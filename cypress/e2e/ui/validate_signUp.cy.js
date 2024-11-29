@@ -20,12 +20,13 @@ describe('test suite to validate sign up functionality', () => {
         userObj.getUserByEmail(data.validEmail).then((res) => {
             const qnt = res.body.quantidade;
             if (qnt == 0) {
-                userObj.registerUser('Matheus Inbev', data.validEmail, data.validPass, 'true');
-                expect(response.body).property('message').to.equal('Cadastro realizado com sucesso');
-                cy.log('User created');
+                userObj.registerUser('Matheus Inbev', data.validEmail, data.validPass, 'true').then((response) => {
+
+                    expect(response.body).property('message').to.equal('Cadastro realizado com sucesso');
+                    cy.log('User created');
+                });
             }
-            
-        })
+        });
     });
 
     // block to be executed before each test case
