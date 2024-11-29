@@ -1,14 +1,14 @@
 import getAuthToken from '../utils/utilities';
 
 class RegisterProdAPI {
-
+    
     constructor() {
         // getting api host from envinroment variable
         this.apiHost = Cypress.env('apiHost');
     }
-
+    
     registerProduct(nome, preco, descricao, quantidade) {
-        const token = getAuthToken();
+
         return cy.request({
           method: 'POST',
           url: `${this.apiHost}/produtos`,
@@ -21,7 +21,7 @@ class RegisterProdAPI {
             quantidade
           },
           headers: {
-            Authorization: `${token}` // Attach the token
+            Authorization: `${getAuthToken()}` // Attach the token
           }
         });
         

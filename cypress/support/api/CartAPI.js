@@ -1,3 +1,5 @@
+import getAuthToken from '../utils/utilities';
+
 class CartAPI {
     constructor() {
         // getting api host from envinroment variable
@@ -29,6 +31,9 @@ class CartAPI {
             headers: {
                 'Content-Type': 'application/json',
             },
+            headers: {
+                Authorization: `${getAuthToken()}` // Attach the token
+              }
         });
     }
 
@@ -36,6 +41,9 @@ class CartAPI {
         return cy.request({
             method: 'DELETE',
             url: `${this.apiHost}/carrinhos/concluir-compra`,
+            headers: {
+                Authorization: `${getAuthToken()}` // Attach the token
+              }
         });
     }
 
@@ -43,6 +51,9 @@ class CartAPI {
         return cy.request({
             method: 'DELETE',
             url: `${this.apiHost}/carrinhos/cancelar-compra`,
+            headers: {
+                Authorization: `${getAuthToken()}` // Attach the token
+              }
         });
     }
 }
