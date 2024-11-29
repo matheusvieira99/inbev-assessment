@@ -20,6 +20,7 @@ describe('Test suite to validate login', () => {
                 expect(response.body).property('message').to.equal('Cadastro realizado com sucesso');
                 cy.log('User created');
             }
+            
         })
     });
 

@@ -24,6 +24,7 @@ describe('test suite to validate sign up functionality', () => {
                 expect(response.body).property('message').to.equal('Cadastro realizado com sucesso');
                 cy.log('User created');
             }
+            
         })
     });
 

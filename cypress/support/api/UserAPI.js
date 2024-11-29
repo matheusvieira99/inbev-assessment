@@ -23,7 +23,6 @@ class UserAPI {
             url: `${this.apiHost}/usuarios`,
             qs: {
                 "email": email,
-
             }
           });
     }
