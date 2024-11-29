@@ -1,9 +1,5 @@
 class LoginPage {
 
-    constructor(){
-
-    }
-
     //Locators
     getEmailField() {
         return cy.get('input[data-testid="email"]');
@@ -17,8 +13,8 @@ class LoginPage {
         return cy.get('button[data-testid="entrar"]');
     }
 
-    getSignInBtn() {
-        return cy.get('input[data-testid="cadastrar"]');
+    getSignUpBtn() {
+        return cy.get('a[data-testid="cadastrar"]');
     }
 
     getAlert() {
@@ -46,6 +42,10 @@ class LoginPage {
 
     checkAlertText(text) {
         this.getAlert().contains(text);
+    }
+
+    clickOnSignUpBtn() {
+        this.getSignUpBtn().click();
     }
 }
 

@@ -1,7 +1,7 @@
 import LoginPage from '../../support/page_objects/LoginPage';
 import data from '../../fixtures/data.json';
 
-describe('Test suite to validate products', () => {
+describe('Test suite to validate login', () => {
     let LoginPageObj;
 
 
@@ -17,6 +17,12 @@ describe('Test suite to validate products', () => {
         });
         cy.visit('/login');
     });
+    
+    it('should not login admin account with invalid credentials', () => {
+        LoginPageObj.login(data.invalidEmail, data.validPass);
+        cy.url().should('not.include', 'admin/home'); // verifying navigation
+        LoginPageObj.checkAlertText('Email e/ou senha inválidos');
+    });
 
     it('should login admin account with valid credentials', () => {
         LoginPageObj.login(data.validEmail, data.validPass);
@@ -24,9 +30,4 @@ describe('Test suite to validate products', () => {
         cy.url().should('include', 'admin/home');
     });
 
-    it('should not login admin account with invalid credentials', () => {
-        LoginPageObj.login(data.invalidEmail, data.validPass);
-        cy.url().should('not.include', 'admin/home'); // verifying navigation
-        LoginPageObj.checkAlertText('Email e/ou senha inválidos');
-    });
   })
