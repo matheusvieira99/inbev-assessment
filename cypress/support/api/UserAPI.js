@@ -17,16 +17,13 @@ class UserAPI {
         });
       }
 
-    getUser(id, name, email, pass, admin) {
+    getUserByEmail(email) {
         return cy.request({
             method: 'GET',
             url: `${this.apiHost}/usuarios`,
             qs: {
-                "_id": id,
-                "nome": name,
                 "email": email,
-                "password": pass,
-                "administrador": admin
+
             }
           });
     }

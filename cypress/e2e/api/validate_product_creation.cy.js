@@ -1,21 +1,35 @@
 import data from '../../fixtures/data.json';
 import RegisterProdAPI from "../../support/api/RegisterProdAPI";
+import UserAPI from "../../support/api/UserAPI";
 import { generateUniqueName } from '../../support/utils/utilities';
 
 describe('Test suite to register new product as an admin', () => {
     let registerProdObj;
     let idProduct;
+    let userObj;
 
     // Creating page object before execution of test suite
     before(() => {
         registerProdObj = new RegisterProdAPI();
+        userObj = new UserAPI();
         // login as precondition
+        userObj.getUserByEmail(data.validEmail).then((res) => {
+            const qnt = res.body.quantidade;
+            if (qnt == 0) {
+                userObj.registerUser('Matheus Inbev', data.validEmail, data.validPass, 'true');
+                expect(response.body).property('message').to.equal('Cadastro realizado com sucesso');
+                cy.log('User created');
+            }
+        })
+
         cy.generateAdminToken(data.validEmail, data.validPass);
     });
 
-    after(() => {
+    // after(() => {
+    //     // delete user after test suite
 
-    });
+
+    // });
 
     beforeEach(() => {
         cy.fixture('data').then((data) => {
