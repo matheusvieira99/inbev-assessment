@@ -1,5 +1,14 @@
 {
   "validEmail": "teste@qa.com",
   "validPass": "123456",
-  "invalidEmail": "dsdsdsf@dsdsdsds.you.com"
+  "invalidEmail": "dsdsdsf@dsdsdsds.you.com",
+  "expiredToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlQHFhLmNvbSIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNzMyODUxMTEyLCJleHAiOjE3MzI4NTE3MTJ9.kaXVfsKiQzhJEM_y72eAC9YwZZnGDhow-YpJ5Fp_S8Y",
+  "products": {
+    "mouseLogitech": {
+      "name": "Logitech Mouse MX",
+      "price": 120,
+      "description": "Perfect mouse to play COD and Fortnite",
+      "amount": 7
+    }
+  }
 }

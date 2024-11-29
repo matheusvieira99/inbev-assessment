@@ -1,25 +1,21 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import LoginAPI from "../support/api/LoginApi";
+
+const LoginApiObj = new LoginAPI();
+let token;
+
+Cypress.Commands.add('generateAdminToken', (email, pass) => {
+    LoginApiObj.getAdminToken(email, pass).then((response) => {
+        expect(response).property('status').to.equal(200); // verify the response code
+        expect(response.body).property('message').to.not.be.oneOf([null, ""]);
+        expect(response.body).property('authorization').to.not.be.oneOf([null, ""]); // ensure token is not null or empty
+        expect(response.body).property('message').to.equal('Login realizado com sucesso');
+        expect(response.body).property('authorization').to.include('Bearer'); // ensure that the token returned is a bearer token
+        token = response.body.authorization; // storing token in a variable
+        Cypress.env('authToken', token); // storing the token in Cypress environment variables
+        cy.log(token)
+    });
+  });
+
+Cypress.Commands.add('generateUniqueName', (prefix) => {
+    return `${prefix}_${Date.now()}`;
+  });
