@@ -1,3 +1,5 @@
+import getAuthToken from '../utils/utilities';
+
 class RegisterProdAPI {
 
     constructor() {
@@ -5,12 +7,8 @@ class RegisterProdAPI {
         this.apiHost = Cypress.env('apiHost');
     }
 
-    getAuthToken() {
-        return Cypress.env('authToken'); // access the token stored in Cypress env
-      }
-
     registerProduct(nome, preco, descricao, quantidade) {
-        const token = this.getAuthToken();
+        const token = getAuthToken();
         return cy.request({
           method: 'POST',
           url: `${this.apiHost}/produtos`,
@@ -24,6 +22,25 @@ class RegisterProdAPI {
           },
           headers: {
             Authorization: `${token}` // Attach the token
+          }
+        });
+        
+      }
+
+      registerProductInvalidJWT(nome, preco, descricao, quantidade, jwt) {
+        return cy.request({
+          method: 'POST',
+          url: `${this.apiHost}/produtos`,
+          // allowing negative tests
+          failOnStatusCode: false,
+          body: {
+            nome,
+            preco,
+            descricao,
+            quantidade
+          },
+          headers: {
+            Authorization: `${jwt}`
           }
         });
         

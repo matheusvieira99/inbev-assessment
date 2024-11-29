@@ -12,7 +12,6 @@ Cypress.Commands.add('generateAdminToken', (email, pass) => {
         expect(response.body).property('authorization').to.include('Bearer'); // ensure that the token returned is a bearer token
         token = response.body.authorization; // storing token in a variable
         Cypress.env('authToken', token); // storing the token in Cypress environment variables
-        cy.log(token)
     });
   });
 
