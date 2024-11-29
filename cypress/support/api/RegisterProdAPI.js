@@ -46,6 +46,16 @@ class RegisterProdAPI {
         
       }
 
+    deleteProdById(id) {
+        return cy.request({
+            method: 'DELETE',
+            url: `${this.apiHost}/produtos/${id}`,
+            headers: {
+                Authorization: `${getAuthToken()}`
+              }
+        });
+    }
+
 
 }
 
