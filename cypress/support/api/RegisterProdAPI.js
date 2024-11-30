@@ -56,6 +56,16 @@ class RegisterProdAPI {
         });
     }
 
+    getProductByName(name) {
+        return cy.request({
+            method: 'GET',
+            url: `${this.apiHost}/produtos`,
+            qs: {
+                "nome": name
+            }
+        })
+    }
+
 
 }
 

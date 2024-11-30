@@ -22,8 +22,17 @@ describe('Test suite to register new product as an admin', () => {
                     cy.log('User created');
                 });
             }
-        })
-
+        });
+        // preparing the existing product scenario
+        // the records are deleted after a few hours. the below code is a workaround
+        registerProdObj.getProductByName(data.products.mouseLogitech.name).then((res) => {
+            const qnt = res.body.quantidade;
+            if (qnt == 0) {
+                registerProdObj.registerProduct(data.products.mouseLogitech.name, data.products.mouseLogitech.price, data.products.mouseLogitech.description, data.products.mouseLogitech.amount).then((response) => {
+                    expect(response).property('status').to.equal(201);
+                });
+            }
+        });
         cy.generateAdminToken(data.validEmail, data.validPass);
     });
 
