@@ -23,6 +23,7 @@ describe('Test suite to register new product as an admin', () => {
                 });
             }
         });
+        cy.generateAdminToken(data.validEmail, data.validPass);
         // preparing the existing product scenario
         // the records are deleted after a few hours. the below code is a workaround
         registerProdObj.getProductByName(data.products.mouseLogitech.name).then((res) => {
@@ -33,7 +34,6 @@ describe('Test suite to register new product as an admin', () => {
                 });
             }
         });
-        cy.generateAdminToken(data.validEmail, data.validPass);
     });
 
     // after(() => {
